@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { OemModule } from './module/oem/oem.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { User } from './user/entities/user.entity';
 
 @Module({
   imports: [
@@ -12,12 +13,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       port: 5432,
       password: 'S3cret',
       username: 'citizix_user',
-      entities: [],
+      entities: [User],
       database: 'citizix_db',
       synchronize: true,
-      logging: true,
+      logging: false,
     }),
-    OemModule],
+    UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
